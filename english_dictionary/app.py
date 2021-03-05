@@ -12,10 +12,9 @@ def translate(word):
     if word in data:
         return data[word]
 
-    elif get_close_matches(word, dict_keys, cutoff=0.8):
-        return f"""Please double check your input. Did you mean: { get_close_matches(
-            word, dict_keys
-        )}?"""
+    suggestion = get_close_matches(word, dict_keys, 1, cutoff=0.8)
+    if suggestion:
+        return "Please double check your input. Did you mean: %s?" % suggestion[0]
     else:
         return "The word doesn't exist"
 
