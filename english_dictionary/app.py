@@ -12,7 +12,7 @@ def translate(word):
     if word in data:
         return data[word]
 
-    elif get_close_matches(word, dict_keys):
+    elif get_close_matches(word, dict_keys, cutoff=0.8):
         return f"""Please double check your input. Did you mean: { get_close_matches(
             word, dict_keys
         )}?"""
