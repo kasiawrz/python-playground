@@ -10,18 +10,19 @@ def translate(word):
     dict_keys = data.keys()
 
     if word in data:
-        return data[word]
+        return data[word][0]
 
-    suggestion = get_close_matches(word, dict_keys, 1, cutoff=0.8)[0]
+    suggestion = get_close_matches(word, dict_keys, 1, cutoff=0.8)
 
     if suggestion:
 
         shouldRerun = input(
-            "Please double check your input. Did you mean: %s? (yes/ no) " % suggestion
+            "Please double check your input. Did you mean: %s? (yes/ no) "
+            % suggestion[0]
         )
 
         if shouldRerun.lower() in ["y", "yes"]:
-            return data[suggestion]
+            return data[suggestion[0]][0]
         else:
             return "Try another word then 🤷🏼‍♀️"
     else:
