@@ -10,7 +10,7 @@ def translate(word):
     dict_keys = data.keys()
 
     if word in data:
-        return data[word][0]
+        return data[word]
 
     suggestion = get_close_matches(word, dict_keys, 1, cutoff=0.8)
 
@@ -22,7 +22,7 @@ def translate(word):
         )
 
         if shouldRerun.lower() in ["y", "yes"]:
-            return data[suggestion[0]][0]
+            return data[suggestion[0]]
         else:
             return "Try another word then 🤷🏼‍♀️"
     else:
@@ -30,5 +30,10 @@ def translate(word):
 
 
 word = input("Enter word: ")
+output = translate(word)
 
-print(translate(word))
+if type(output) == list:
+    for item in output:
+        print(item)
+else:
+    print(output)
